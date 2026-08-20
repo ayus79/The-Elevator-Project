@@ -61,7 +61,6 @@ def make_default_building() -> Building:
             elevators=[
                 Elevator(id=1, current_floor=1, capacity=8),
                 Elevator(id=2, current_floor=1, capacity=8),
-                Elevator(id=3, current_floor=1, capacity=8),
             ]
         ),
     )

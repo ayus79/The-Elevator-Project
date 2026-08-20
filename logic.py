@@ -117,13 +117,18 @@ class ControllerService:
     def submit_hall_call(controller: Controller, call: HallCall) -> Elevator:
         elevator = ControllerService.choose_elevator(controller, call)
 
-        if call.direction == Direction.UP:
+        if call.floor > elevator.current_floor:
             elevator.up_stops.add(call.floor)
-        else:
+        elif call.floor < elevator.current_floor:
             elevator.down_stops.add(call.floor)
 
-        if elevator.direction == Direction.IDLE:
-            elevator.direction = call.direction
+        if (
+            elevator.direction == Direction.IDLE
+            and call.floor != elevator.current_floor
+        ):
+            elevator.direction = (
+                Direction.UP if call.floor > elevator.current_floor else Direction.DOWN
+            )
 
         return elevator
 
