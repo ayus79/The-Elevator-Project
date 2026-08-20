@@ -79,7 +79,7 @@ function renderStatusTable(building) {
   els.statusBody.innerHTML = "";
   for (const e of building.controller.elevators) {
     const row = document.createElement("tr");
-    const stops = [...e.up_stops, ...e.down_stops].sort((a, b) => a - b).join(", ") || "—";
+    const stops = [...e.up_stops, ...e.down_stops].sort((a, b) => a - b).join(", ") || "-";
     row.innerHTML = `
       <td>${e.id}</td>
       <td>${e.current_floor}</td>
