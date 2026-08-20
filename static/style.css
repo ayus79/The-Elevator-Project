@@ -1,0 +1,185 @@
+:root {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --border: #2a2e38;
+  --text: #e6e9ef;
+  --muted: #8b93a3;
+  --accent: #4f8cff;
+  --up: #35c46b;
+  --down: #ff8a3d;
+  --idle: #5a6272;
+  --door-open: #ffd24d;
+  --danger: #ff5c5c;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+header h1 {
+  font-size: 18px;
+  margin: 0;
+  margin-right: auto;
+}
+
+.setup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.setup label { display: flex; align-items: center; gap: 6px; }
+.setup input[type="number"] { width: 60px; }
+.setup .auto { color: var(--text); }
+
+input, select, button {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+button {
+  cursor: pointer;
+  background: #232733;
+}
+button:hover { background: #2b3040; }
+button:active { transform: translateY(1px); }
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 0;
+  min-height: calc(100vh - 65px);
+}
+
+#shaft-view {
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-end;
+  overflow-x: auto;
+}
+
+.shaft {
+  display: flex;
+  flex-direction: column-reverse;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 90px;
+}
+
+.floor-cell {
+  height: 44px;
+  border-top: 1px solid var(--border);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 11px;
+}
+.floor-cell:first-child { border-top: none; }
+
+.floor-label {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.car {
+  width: 60%;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 12px;
+  color: #10131a;
+  transition: background 0.2s;
+}
+.car.dir-UP { background: var(--up); }
+.car.dir-DOWN { background: var(--down); }
+.car.dir-IDLE { background: var(--idle); color: #e6e9ef; }
+.car.door-OPEN { box-shadow: 0 0 0 3px var(--door-open) inset; }
+
+.shaft-name {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.shaft-wrap { display: flex; flex-direction: column; align-items: center; }
+
+#side-panel {
+  border-left: 1px solid var(--border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--panel);
+}
+
+.panel-block h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.panel-block label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.panel-block input, .panel-block select {
+  flex: 1;
+  max-width: 140px;
+}
+
+.btn-row { display: flex; gap: 8px; }
+.btn-row button { flex: 1; }
+
+.hint { font-size: 11px; color: var(--muted); margin: 8px 0 0; }
+
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--border); }
+th { color: var(--muted); font-weight: 500; }
+
+.error-banner {
+  background: rgba(255, 92, 92, 0.12);
+  border: 1px solid var(--danger);
+  color: #ffb3b3;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+}

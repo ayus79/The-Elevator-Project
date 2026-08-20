@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Elevator Project</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>The Elevator Project</h1>
+    <div class="setup">
+      <label>Floors <input id="cfg-floors" type="number" min="1" value="{{ building.num_floors }}" /></label>
+      <label>Elevators <input id="cfg-elevators" type="number" min="1"
+          value="{{ building.controller.elevators|length }}" /></label>
+      <label>Capacity <input id="cfg-capacity" type="number" min="1"
+          value="{{ building.controller.elevators[0].capacity }}" /></label>
+      <button id="btn-reset">Rebuild</button>
+      <button id="btn-step">Step</button>
+      <label class="auto"><input id="cfg-auto" type="checkbox" /> Auto-step</label>
+      <label class="auto"><input id="cfg-random" type="checkbox" /> Simulate random traffic</label>
+    </div>
+  </header>
+
+  <main>
+    <section id="shaft-view" aria-label="Building shaft view"></section>
+    <aside id="side-panel">
+      <div class="panel-block">
+        <h2>Hall Call</h2>
+        <label>Floor <input id="hc-floor" type="number" min="1" /></label>
+        <div class="btn-row">
+          <button id="hc-up">Call ▲</button>
+          <button id="hc-down">Call ▼</button>
+        </div>
+        <p class="hint">Requests pickup from a floor for the given direction.</p>
+      </div>
+
+      <div class="panel-block">
+        <h2>Car Call</h2>
+        <label>Elevator
+          <select id="cc-elevator"></select>
+        </label>
+        <label>Floor <input id="cc-floor" type="number" min="1" /></label>
+        <button id="cc-submit">Select Floor</button>
+        <p class="hint">Simulates pressing a button inside a specific car.</p>
+      </div>
+
+      <div class="panel-block">
+        <h2>Boarding</h2>
+        <label>Elevator
+          <select id="bd-elevator"></select>
+        </label>
+        <label>Passengers <input id="bd-passengers" type="number" min="1" value="1" /></label>
+        <div class="btn-row">
+          <button id="bd-board">Board</button>
+          <button id="bd-alight">Alight</button>
+        </div>
+      </div>
+
+      <div class="panel-block">
+        <h2>Elevators</h2>
+        <table id="status-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Floor</th>
+              <th>Dir</th>
+              <th>Door</th>
+              <th>Load</th>
+              <th>Stops</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div id="error-banner" class="error-banner" hidden></div>
+    </aside>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
